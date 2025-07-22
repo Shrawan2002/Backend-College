@@ -42,3 +42,7 @@ app.get("*",(req,res)=>{
     res.send("this path does not exist");
 })
 // console.log("Running current index.js");
+
+app.post("/" , (req,res)=>{
+    res.send("you send a post request");
+})
