@@ -46,3 +46,8 @@ app.get("*",(req,res)=>{
 app.post("/" , (req,res)=>{
     res.send("you send a post request");
 })
+
+app.get("/:username",(req,res)=>{
+    console.log(req.params);
+    res.send("hello i am root");
+})
