@@ -38,16 +38,19 @@ app.get("/orange",(req,res)=>{
 
 //If it's a very new version, downgrade to a stable one: -> npm install express@4.18.2
 //  Wildcard Route ->This catch-all route matches any GET request not matched by previous routes.
-app.get("*",(req,res)=>{
-    res.send("this path does not exist");
-})
+// app.get("*",(req,res)=>{
+//     res.send("this path does not exist");
+// })
 // console.log("Running current index.js");
 
 app.post("/" , (req,res)=>{
     res.send("you send a post request");
 })
 
-app.get("/:username",(req,res)=>{
-    console.log(req.params);
-    res.send("hello i am root");
+app.get("/:username/:id",(req,res)=>{
+    // console.log(req.params);
+    let {username,id} = req.params;
+    // res.send(`welcome to the page of ${username}`);
+    let htmlStr = `<h1>welcome to the page of @${username}!</h1>`
+    res.send(htmlStr);
 })
