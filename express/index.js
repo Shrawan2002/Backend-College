@@ -47,10 +47,24 @@ app.post("/" , (req,res)=>{
     res.send("you send a post request");
 })
 
+// Path Parameter
+
 app.get("/:username/:id",(req,res)=>{
     // console.log(req.params);
     let {username,id} = req.params;
     // res.send(`welcome to the page of ${username}`);
     let htmlStr = `<h1>welcome to the page of @${username}!</h1>`
     res.send(htmlStr);
+})
+
+// query string
+
+// loclhost:3000/search?q=apple&color=green
+app.get("/search",(req,res)=>{
+    let {q} = req.query;
+    console.log(q);
+    if(!q){
+        res.send("<h1>nothing searched</h1>");
+    }
+    res.send(`<h1>search result for query: ${q}`);
 })
