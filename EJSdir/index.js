@@ -22,3 +22,5 @@ const path = require("path");
     res.render("rolldice.ejs",{num:diceVal});
  })
 
+ // agar key->value same ho to direct ham {diceVal:diceVal}->{diceVal}
+
