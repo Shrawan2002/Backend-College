@@ -16,3 +16,9 @@ const path = require("path");
     console.log(`listening on port ${port}`);
  })
 
+ app.get("/rolldice",(req,res)=>{
+   let diceVal = Math.floor(Math.random()*6)+1;
+   // res.render("rolldice.ejs");
+    res.render("rolldice.ejs",{num:diceVal});
+ })
+
