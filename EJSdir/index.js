@@ -1,4 +1,5 @@
 const express = require("express");
+const { get } = require("http");
 const path = require("path");
  const app = express();
 
@@ -19,8 +20,22 @@ const path = require("path");
  app.get("/rolldice",(req,res)=>{
    let diceVal = Math.floor(Math.random()*6)+1;
    // res.render("rolldice.ejs");
-    res.render("rolldice.ejs",{num:diceVal});
+    res.render("rolldice.ejs",{diceVal});
  })
 
  // agar key->value same ho to direct ham {diceVal:diceVal}->{diceVal}
+
+//  app.get("/ig/:userName",(req,res)=>{
+//    let followers = ["adam","bob","stev","antem"];
+//    let {userName} = req.params;
+//    console.log(userName);
+//    res.render("instagram.ejs",{userName,followers});
+//  })
+
+    app.get("/ig/:username",(req,res)=>{
+      
+    })
+
+
+
 
