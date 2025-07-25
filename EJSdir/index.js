@@ -15,8 +15,8 @@ const path = require("path");
 //serving  static files
 // app.use(express.static("public"));
 // server -> bahar se run kar rahe hai to 
-app.use(express.static(path.join(__dirname,"/public")));
-
+app.use(express.static(path.join(__dirname,"/public/css")));
+app.use(express.static(path.join(__dirname,"/public/js")));
  app.get("/",(req,res)=>{
     res.render("home.ejs");
  })
