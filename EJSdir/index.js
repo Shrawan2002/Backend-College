@@ -35,10 +35,11 @@ const path = require("path");
     app.get("/ig/:username",(req,res)=>{
       const instaData = require("./data.json");
       console.log(instaData);
-      let username = req.params;
+      let {username} = req.params;
       const data = instaData[username];
-      console.log(data);
-      // res.render("instagram.ejs",{data});
+      console.log(data)
+      // console.log(data.name);
+      res.render("instagram.ejs",{data});
     })
 
 
