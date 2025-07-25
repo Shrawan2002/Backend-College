@@ -1,4 +1,6 @@
+const { render } = require("ejs");
 const express = require("express");
+const { rename } = require("fs");
 const { get } = require("http");
 const path = require("path");
  const app = express();
@@ -9,6 +11,12 @@ const path = require("path");
  //jab roote directory se run hota hai to ham set kar dete hai ki views directory ko 
  app.set("views", path.join(__dirname,"/views"));
 // express by default views directory ke andar ja ke hi check karta hai file ko
+
+//serving  static files
+// app.use(express.static("public"));
+// server -> bahar se run kar rahe hai to 
+app.use(express.static(path.join(__dirname,"/public")));
+
  app.get("/",(req,res)=>{
     res.render("home.ejs");
  })
@@ -39,8 +47,14 @@ const path = require("path");
       const data = instaData[username];
       console.log(data)
       // console.log(data.name);
-      res.render("instagram.ejs",{data});
+      if(data){
+         res.render("instagram.ejs",{data});
+      }else{
+         res.render("error.ejs")
+      }
     })
+
+
 
 
 
