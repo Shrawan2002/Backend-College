@@ -10,6 +10,6 @@ app.post("/register",(req,res)=>{
     res.send("standard post response");
 })
 
-app.listen(port,()=>{
-    console.log(`listening on port : ${port}`);
-})
+// app.listen(port,()=>{
+//     console.log(`listening on port : ${port}`);
+// })
