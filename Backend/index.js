@@ -1,13 +1,19 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+//express read kar payega body ke data ko-> use middle ware
+app.use(express.urlencoded({extended:true}));
 
 app.get("/register",(req,res)=>{
-    res.send("standard Get response");
+    // res.send("standard Get response");
+    let {user, password} = req.query;
+    res.send(`standard GET response. Welcome ${user}!`);
 })
 
 app.post("/register",(req,res)=>{
-    res.send("standard post response");
+    // console.log(req.body);
+    let {user,password} = req.body
+    res.send(`standard POST response. Welcome ${user}!`);
 })
 
 app.listen(port,()=>{
