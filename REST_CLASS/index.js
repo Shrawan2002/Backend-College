@@ -29,10 +29,19 @@ app.get("/posts",(req,res)=>{
     res.render("index.ejs",{posts});
 })
 
-//create route
-
+//create route-> add new posts
+// serve the form
 app.get("/posts/new",(req,res)=>{
-    res.render()
+    res.render("new.ejs");
+})
+
+//add the new post
+app.post("/posts",(req,res)=>{
+    // console.log(req.body);
+    let {username,content} = req.body;
+    posts.push({username,content});
+    // res.send("post request working");
+    res.redirect("/posts");
 })
 
 app.listen(port,()=>{
