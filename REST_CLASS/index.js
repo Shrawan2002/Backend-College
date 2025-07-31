@@ -10,6 +10,8 @@ app.set("views",path.join(__dirname,"/views"));
 app.use(express.static(path.join(__dirname,"public")));
 
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+
 
 let posts = [
     {
@@ -55,6 +57,36 @@ app.get("/posts/:id",(req,res)=>{
     // console.log(post);
     res.render("show.ejs",{post});
 })
+
+app.patch("/posts/:id",(req,res)=>{
+    let {id} = req.params;
+     let newContent = req.body.content;
+     console.log(newContent);
+    console.log(id);
+    res.send("receive patch request");
+})
+
+// app.patch("/posts/:id", (req, res) => {
+//   const { id } = req.params;
+//   const { content } = req.body; // works now because of urlencoded middleware
+
+//   console.log("Post ID:", id);
+//   console.log("New Content:", content);
+
+//   res.send("Received patch with urlencoded body");
+// });
+
+// app.patch("/posts/:id", (req, res) => {
+//   const { id } = req.params;
+//   let content = req.body.content;
+
+//   console.log("Post ID:", id);
+//   console.log("New Content:", content);
+
+//   res.send("Received patch with urlencoded body");
+// });
+
+
 
 app.listen(port,()=>{
     console.log("listening to por:",port);
