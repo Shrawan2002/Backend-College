@@ -3,6 +3,9 @@ const app = express();
 const port = 8080;
 const path = require("path");
 const {v4: uuidv4} = require("uuid");
+const methodOverride = require('method-override')
+
+app.use(methodOverride('_method'));
 
 app.set("view engine", "ejs");
 app.set("views",path.join(__dirname,"/views"));
@@ -58,36 +61,39 @@ app.get("/posts/:id",(req,res)=>{
     res.render("show.ejs",{post});
 })
 
+//implement patch
+
+app.get("/posts/:id/edit",(req,res)=>{
+     let {id} = req.params;
+      let post = posts.find((p)=>p.id === id);
+      res.render("edit.ejs",{post});
+})
+
 app.patch("/posts/:id",(req,res)=>{
     let {id} = req.params;
      let newContent = req.body.content;
-     console.log(newContent);
-    console.log(id);
-    res.send("receive patch request");
+    //  console.log(newContent);
+    // console.log(id);
+    let post = posts.find((p)=>p.id === id);
+    post.content = newContent;
+    console.log(post);
+    // res.send("receive patch request");
+    res.redirect("/posts");
 })
 
-// app.patch("/posts/:id", (req, res) => {
-//   const { id } = req.params;
-//   const { content } = req.body; // works now because of urlencoded middleware
-
-//   console.log("Post ID:", id);
-//   console.log("New Content:", content);
-
-//   res.send("Received patch with urlencoded body");
-// });
-
-// app.patch("/posts/:id", (req, res) => {
-//   const { id } = req.params;
-//   let content = req.body.content;
-
-//   console.log("Post ID:", id);
-//   console.log("New Content:", content);
-
-//   res.send("Received patch with urlencoded body");
-// });
 
 
+//delete post
+
+app.delete("/posts/:id",(req,res)=>{
+     let {id} = req.params;
+    //  let post = posts.find((p)=>p.id === id);
+     posts = posts.filter((p)=>p.id != id);
+     res.redirect("/posts");
+})
 
 app.listen(port,()=>{
     console.log("listening to por:",port);
 })
+
+//CRUD -> C->POST, R->GET, U->PUT,PATCH, D->DELETE
