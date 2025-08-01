@@ -25,14 +25,20 @@ const connection =  mysql.createConnection({
   password: "Shrawan@123"
 });
 
+let q = "SHOW TABLES";
+
  try{
-    connection.query("SHOW TABLES",(err,result)=>{
+    connection.query(q,(err,result)=>{
     if(err) throw err;
     console.log(result);
+    //  console.log(result.length);
+     console.log(result[0]);
 })
  }catch(err){
     console.log(err);
  }
+
+ connection.end();
 
   let getRandomUser = ()=> {
    return {
@@ -44,4 +50,4 @@ const connection =  mysql.createConnection({
   };
 }
 
-console.log(getRandomUser());
+// console.log(getRandomUser());
