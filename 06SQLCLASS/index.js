@@ -109,8 +109,20 @@ app.set("views",path.join(__dirname,"/views"));
   //show Route
 
   app.get("/user",(req,res)=>{
-    res.send("sucess")
-  })
+    let q = `SELECT * FROM user`;
+    try{
+      connection.query(q, (err,result)=>{
+        if(err) throw err;
+        // console.log(result);
+        // res.send(result);
+        let users = result;
+        res.render("showusers.ejs",{users});
+      })
+      }catch(err){
+        console.log(err);
+        res.send("some error in DB");
+      }
+    })
 
   app.listen(8080,()=>{
     console.log("server is listenning to port 8080");
