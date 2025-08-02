@@ -124,6 +124,25 @@ app.set("views",path.join(__dirname,"/views"));
       }
     })
 
+    //Edit Route
+    app.get("/user/:id/edit",(req,res)=>{
+      let {id} = req.params;
+      console.log(id);
+      let q = `SELECT * FROM user WHERE id = "${id}" `;
+      try{
+        connection.query(q, (err,result)=>{
+          if(err) throw err;
+          let user = result[0];
+          console.log(result);
+          res.render("edit.ejs",{user});
+        })
+      }catch(err){
+        console.log(err);
+        res.send("some error in DB");
+      }
+    // res.render("edit.ejs");
+    })
+
   app.listen(8080,()=>{
     console.log("server is listenning to port 8080");
   })

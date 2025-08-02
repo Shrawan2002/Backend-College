@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Users</title>
       <style>
+        body{
+            background-color: lightblue;
+        }
         table,th,td{
             border: 1px solid black;
         }
@@ -22,6 +25,13 @@
         <td><%=user.id %></td>
         <td><%=user.email %></td>
         <td><%=user.username %></td>
+        <td>
+        <form method="get" action="/user/<%= user.id %>/edit">
+           <button style="background-color: #4CAF50; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">
+            Edit username
+            </button>
+        </form>
+        </td>
         </tr>
          <% } %>
     </table>
