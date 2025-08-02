@@ -2,6 +2,7 @@ const { faker } = require('@faker-js/faker');
 const mysql = require('mysql2');
 const express = require("express");
 const app = express();
+const path = require("path");
 
 
 // let  createRandomUser = ()=> {
@@ -85,19 +86,30 @@ const connection =  mysql.createConnection({
 
 //   connection.end();
 
+//Home Route
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"/views"));
+
   app.get("/",(rq,res)=>{
     let q = `SELECT COUNT(*) FROM user`;
     try{
       connection.query(q, (err,result)=>{
         if(err) throw err;
-          console.log(result[0]["COUNT(*)"]);
-          res.send(result[0]["COUNT(*)"]);
+          // console.log(result[0]["COUNT(*)"]);
+          let count = result[0]["COUNT(*)"]
+          res.render("home.ejs",{count});
       })
     }catch(err){
       console.log(err);
       res.send("some err in DB");
     }
   
+  })
+
+  //show Route
+
+  app.get("/user",(req,res)=>{
+    res.send("sucess")
   })
 
   app.listen(8080,()=>{
