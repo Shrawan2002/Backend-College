@@ -162,7 +162,7 @@ app.set("views",path.join(__dirname,"/views"));
             let q2 = `UPDATE user SET username ="${newUsername}" WHERE id = "${id}"`;
             connection.query(q2, (err,result)=>{
               if(err) throw err;
-              res.send(result);
+              res.redirect("/user");
             })
           }
         })
@@ -179,3 +179,4 @@ app.set("views",path.join(__dirname,"/views"));
 
 
 // console.log(getRandomUser());
+//mysql run in CLI -> & "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p
