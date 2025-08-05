@@ -22,7 +22,4 @@
 // //     console.log(`listening on port : ${port}`);
 // // })
 
-let obj = {
-    name: "shrawan",
-    email: "shrawan@gmail.com"
-}
+
