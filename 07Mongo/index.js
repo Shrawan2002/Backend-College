@@ -80,7 +80,39 @@ const User = mongoose.model("User",userSchema);
 
 // find by id
 
-User.findById("68922019652ff2b954b14c1c")
+// User.findById("68922019652ff2b954b14c1c")
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// update one
+
+// User.updateOne({name:"bruce"},{age:49})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// update many
+
+// User.updateMany({age: {$gt:48}},{age:55})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// User.findOneAndUpdate({name:"Bruce"},{age:42})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+User.findOneAndUpdate({name:"Bruce"},{age:42},{new:true})
 .then((res)=>{
     console.log(res);
 }).catch((err)=>{
