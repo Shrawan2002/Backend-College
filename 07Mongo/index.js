@@ -112,7 +112,30 @@ const User = mongoose.model("User",userSchema);
 //     console.log(err);
 // })
 
-User.findOneAndUpdate({name:"Bruce"},{age:42},{new:true})
+// User.findOneAndUpdate({name:"Bruce"},{age:42},{new:true})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// delete
+
+// User.deleteOne({name: "Bruce"})
+// .then((res)=>{
+//     console.log(res)
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// User.deleteMany({age:48})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err)
+// })
+
+User.findByIdAndDelete("6892c36c5f20357d9ce67fbf")
 .then((res)=>{
     console.log(res);
 }).catch((err)=>{
