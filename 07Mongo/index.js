@@ -29,17 +29,62 @@ const User = mongoose.model("User",userSchema);
 //     age: 48,
 // }); // CLI -> node -> .load index.js
 
-const user2 = new User({
-    name: "Eve",
-    email: "eve@yahoo.in",
-    age: 48
-})
+// const user2 = new User({
+//     name: "Eve",
+//     email: "eve@yahoo.in",
+//     age: 48
+// })
 
 // user1.save();
 
-user2.save()
+// user2.save()
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// insert many data
+
+// User.insertMany([
+//     {name: "Tony", email: "tony@gmail.com",age: 50},
+//     {name: "Peter", email: "peter@gmail.com",age: 30},
+//     {name: "Bruce", email: "bruce@gmail.com",age: 47},
+// ]).then((res)=> {
+//     console.log(res)
+// })
+
+
+// User.find({})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// User.find({age:{$gt:48}})
+// .then((res)=>{
+//     console.log(res[0].name);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// find one
+
+// User.findOne({age:{$gt:47}})
+// .then((res)=>{
+//     console.log(res);
+// }).catch((err)=>{
+//     console.log(err);
+// })
+
+// find by id
+
+User.findById("68922019652ff2b954b14c1c")
 .then((res)=>{
     console.log(res);
 }).catch((err)=>{
     console.log(err);
 })
+
+
