@@ -4,6 +4,7 @@ const path = require("path");
 const Chat = require("./models/chat.js");
 const app = express();
 
+app.use(express.urlencoded({extended:true}));
 app.set("views", path.join(__dirname,"/views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname,"public")))
@@ -40,10 +41,41 @@ app.get("/",(req,res)=>{
 // Index Route
 app.get("/chats", async(req,res)=>{
     let chats = await Chat.find();
-    console.log(chats);
+    // console.log(chats);
     // res.send("working")
     res.render("index.ejs",{chats})
 })
+
+// new chat new route
+app.get("/chats/new",(req,res)=>{
+    res.render("new.ejs");
+})
+
+//create route
+app.post("/chats",(req,res)=>{
+    // let chats = req.body;
+    // console.log(chats);
+    // let chat = {...chats,  created_at: new Date()};
+    // Chat.insertOne(chat);
+    // res.redirect("/chats");
+
+    let {from, to, msg} = req.body;
+    let newChat = new Chat({
+        from: from,
+         to: to,
+        msg: msg,
+        created_at: new Date(),
+    })
+    // console.log(newChat);
+    newChat.save()
+    .then(()=>{
+        console.log("chat was saved");
+    }).catch((err)=>{
+        console.log(err);
+    })
+    res.redirect("/chats");
+})
+
 app.listen(8080,()=>{
     console.log("server is listening on port 8080");
 })
