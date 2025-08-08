@@ -88,15 +88,31 @@ app.get("/chats/:id/edit",async (req,res)=>{
 
 //Update Route
 
-app.put("/chats/:id",(req,res)=>{
+app.put("/chats/:id", async(req,res)=>{
     let {id} = req.params;
-    let {msg} = req.body;
-    Chat.findByIdAndUpdate(id,{msg:msg},{new:true})
-    .then((res)=>{
-        console.log(res)
-    }).catch((err)=>{
-        console.log(err);
-    })
+    // let {msg} = req.body;
+    let {msg : newMsg} = req.body;
+    // Chat.findByIdAndUpdate(id,{msg:msg},{new:true})
+    // .then((res)=>{
+    //     console.log(res)
+    // }).catch((err)=>{
+    //     console.log(err);
+    // })
+    let updatedChat = await Chat.findByIdAndUpdate(
+        id,
+        {msg: newMsg},
+        {runValidators: true, new: true},
+    )
+    console.log(updatedChat);
+    res.redirect("/chats");
+})
+
+//Destroy Route
+
+app.delete("/chats/:id", async(req,res)=>{
+    let {id} = req  .params;
+    let delChat = await Chat.findByIdAndDelete(id,);
+    console.log(delChat);
     res.redirect("/chats");
 })
 
