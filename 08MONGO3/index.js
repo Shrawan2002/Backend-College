@@ -109,13 +109,13 @@ app.put("/chats/:id", async(req,res)=>{
 
 //Destroy Route
 
-// app.delete("/chats/:id", async(req,res)=>{
-//     let {id} = req  .params;
-//     let delChat = await Chat.findByIdAndDelete(id,);
-//     console.log(delChat);
-//     res.redirect("/chats");
-// })
+app.delete("/chats/:id", async(req,res)=>{
+    let {id} = req  .params;
+    let delChat = await Chat.findByIdAndDelete(id,);
+    console.log(delChat);
+    res.redirect("/chats");
+})
 
-// app.listen(8080,()=>{
-//     console.log("server is listening on port 8080");
-// })
+app.listen(8080,()=>{
+    console.log("server is listening on port 8080");
+})
