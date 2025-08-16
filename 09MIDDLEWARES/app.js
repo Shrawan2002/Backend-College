@@ -2,10 +2,36 @@ const express = require("express");
 const app = express();
 
 // middleware 
-app.use((req,res)=>{
-    console.log("Hi, I am middleware");
-    res.send("middleware finished");
-});
+
+// app.use((req,res)=>{
+//     console.log("Hi, I am middleware");
+//     res.send("middleware finished");
+// });
+
+//next() -> middleware
+// app.use((req,res,next)=>{
+    // console.log("Hi, I am 1st middleware");
+    // next()
+    // console.log("this is after next");
+
+    //or
+    // return next();  // aage ka line execute nahi hoga
+    // console.log("this is after next");
+// })
+
+
+// app.use((req,res,next)=>{
+//     console.log("Hi, I am 2nd middleware");
+//     next()
+// })
+
+
+//logger 
+
+app.use((req,res,next)=>{
+    req.time =  new Date(Date.now()).toString();
+    console.log(req.method, req.hostname, req.path, req.time);
+})
 
 app.get("/",(req,res)=>{
     res.send("Hi, I am root..");
