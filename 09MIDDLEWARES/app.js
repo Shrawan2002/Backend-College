@@ -26,11 +26,20 @@ const app = express();
 // })
 
 
+//Path, callback -> particular path ke liye bhi middleware define kar skte hai
+
+app.use("/random",(req,res,next)=>{
+    console.log("I, am only for random");
+    next();
+})
+
+
 //logger 
 
 app.use((req,res,next)=>{
     req.time =  new Date(Date.now()).toString();
     console.log(req.method, req.hostname, req.path, req.time);
+    next();
 })
 
 app.get("/",(req,res)=>{
@@ -39,6 +48,12 @@ app.get("/",(req,res)=>{
 
 app.get("/random",(req,res)=>{
     res.send("this is a random page");
+})
+
+// page do not exist (4040)
+
+app.use((req,res)=>{
+    res.status(404).send("Page not found");
 })
 
 app.listen(8080,()=>{
