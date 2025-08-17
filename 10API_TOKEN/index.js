@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const ExpressError = require("./ExpressError.js");
 
 // app.use("/api",(req,res,next)=>{
 //     let {token} = req.query;
@@ -21,7 +22,8 @@ const checkToken = (req,res,next)=>{
     }else{
         //Handing Errors
         // res.send("ACCESS DENIED!");
-        throw new Error("ACCESS DENIED!");
+        // throw new Error("ACCESS DENIED!");
+        throw new ExpressError(401, "ACCESS DENIED!")
     } 
 }
 
