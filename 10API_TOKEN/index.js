@@ -40,6 +40,12 @@ app.get("/err",(req,res)=>{
     abcd = abcd;
 })
 
+//Create an Admin route & send an error with a 403 status code.
+
+app.get("/admin",(req,res)=>{
+    throw new ExpressError(403, "Access to admin is Forbidden")
+})
+
 app.use((err,req,res,next)=>{
     console.log("----ERROR-----");
     let {status = 500, message= "SOME ERROR!"} = err;
