@@ -46,6 +46,11 @@ app.get("/admin",(req,res)=>{
     throw new ExpressError(403, "Access to admin is Forbidden")
 })
 
+app.use((err,req,res,next)=> {
+    console.log(err.name);
+    next(err);
+})
+
 app.use((err,req,res,next)=>{
     console.log("----ERROR-----");
     let {status = 500, message= "SOME ERROR!"} = err;
@@ -58,6 +63,32 @@ app.use((err,req,res,next)=>{
 app.use((err,req,res,next)=>{
     console.log("----ERROR2-----");
     next(err) 
+})
+
+
+// mongoose Error
+
+const handleValidationErr = (err)=>{
+    console.log("this was a validation error. please follow rules");
+    console.dir(err.message);
+    return err;
+}
+
+app.use((err,req,res, next)=>{
+    console.log(err.name);
+    if(err.name === "validationError"){
+        err = handleValidationErr(err);
+    }
+    next(err);
+})
+
+app.use((err,req,res,next)=>{
+    console.log("----ERROR-----");
+    let {status = 500, message= "SOME ERROR!"} = err;
+    //  res.send(err)
+    res.status(status).send(message);
+
+    // next(err)  //express ke defaulr error handling usko tigger kar rahe hai or custom error handler ko 
 })
 
 app.listen(8080,()=>{
