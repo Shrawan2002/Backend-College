@@ -66,7 +66,7 @@ app.use((err,req,res,next)=>{
 })
 
 
-// mongoose Error
+// mongoose Error handler
 
 const handleValidationErr = (err)=>{
     console.log("this was a validation error. please follow rules");
