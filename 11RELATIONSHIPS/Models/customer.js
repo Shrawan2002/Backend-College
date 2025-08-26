@@ -73,4 +73,25 @@ const findCustomer = async ()=>{
     console.log(result[0]);
 }
 
-findCustomer();
+// findCustomer();
+
+
+
+const addCust = async ()=>{
+    let newCust = new Customer({
+        name: "Karan Arjun"
+    });
+
+    let newOrder = new Order({
+        item: "Pizza",
+        price: 250
+    });
+
+    newCust.orders.push(newOrder);
+
+    await newCust.save();
+    await newOrder.save();
+    console.log("added new customer"); 
+}
+
+addCust();
