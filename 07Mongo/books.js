@@ -22,7 +22,7 @@ const bookSchema = new mongoose.Schema({
     },
     price : {
         type: Number,
-        min: [1, "price is too low for Amazon selling"],
+        min: [1, 'price is too low for Amazon selling, got {VALUE}'],
     },
     discount : {
         type: Number,
@@ -37,18 +37,18 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model("Book",bookSchema);
 
-// let book1 = new Book({
-//     title : "Mathematics XII",
-//     author: "RD Sharma",
-//     price: 1200
-// })
+let book1 = new Book({
+    title : "The Silent Patient",
+    author: "Alex Michaelides",
+    price: -500
+})
 
-// book1.save()
-// .then((res)=>{
-//     console.log(res);
-// }).catch((err)=>{
-//     console.log(err);
-// })
+book1.save()
+.then((res)=>{
+    console.log(res);
+}).catch((err)=>{
+    console.log(err);
+})
 
 // let book1 = new Book({
 //     title : "Mathematics VIII",
@@ -105,9 +105,9 @@ const Book = mongoose.model("Book",bookSchema);
 //     console.log(err)
 // }) // update Time Collection ke schema ke rule ko check nhi karta hai
 
-Book.findByIdAndUpdate('6892efbbc34995634f7978e0', {price: -500},{runValidators: true}) // update ke time schema ke validators ke check karega
-.then((res)=>{
-    console.log(res)
-}).catch((err)=>{
-    console.log(err.errors.price.properties.message)
-})
+// Book.findByIdAndUpdate('6892efbbc34995634f7978e0', {price: -500},{runValidators: true}) // update ke time schema ke validators ke check karega
+// .then((res)=>{
+//     console.log(res)
+// }).catch((err)=>{
+//     console.log(err.errors.price.properties.message)
+// })  

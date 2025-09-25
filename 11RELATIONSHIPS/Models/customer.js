@@ -34,7 +34,7 @@ const Order = mongoose.model("Order", orderSchema);;
 //   addOrder();
 
 const customerSchema = new Schema({
-    nmae: String,
+    name: String,
     orders: [
         {
             type: Schema.Types.ObjectId,
@@ -43,11 +43,21 @@ const customerSchema = new Schema({
     ]
 })
 
+//Mongoose docs recommend attaching middleware before compiling the model.
+
+// mongoose middleware
+customerSchema.post("findOneAndDelete", async(customer)=>{
+    if(customer.orders.length){
+        let res = await Order.deleteMany({_id: {$in : customer.orders} });
+        console.log(res);
+    }
+})
+
 const Customer = mongoose.model("Customer", customerSchema);
 
 const addCustomer = async()=>{
     // let cust1 = new Customer({
-    //     nmae: "Rahul"
+    //     name: "Rahul"
     // })
 
     // let order1 = await Order.findOne({item: "Chips"});
@@ -79,7 +89,7 @@ const findCustomer = async ()=>{
 
 const addCust = async ()=>{
     let newCust = new Customer({
-        name: "Karan Arjun"
+        name: "Karan Arjun",
     });
 
     let newOrder = new Order({
@@ -89,9 +99,26 @@ const addCust = async ()=>{
 
     newCust.orders.push(newOrder);
 
-    await newCust.save();
     await newOrder.save();
+    await newCust.save();
     console.log("added new customer"); 
 }
 
 addCust();
+
+// delete only customer not orders
+const delCust = async ()=>{
+    let data = await Customer.findByIdAndDelete('68ad3f5590e39aec1487575e');
+    console.log(data);
+};
+
+// delCust();
+
+//delete customer and customer reletated order
+
+const delCustandOrder = async()=>{
+    let data = await Customer.findByIdAndDelete('68a81866c0b5dbfbbe2ff4eb');
+    console.log(data);
+}
+
+delCustandOrder();

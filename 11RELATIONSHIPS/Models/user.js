@@ -13,6 +13,8 @@ async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/relationDemo")
 }
 
+
+// mongo relationships -> one to many Approach 1 one to few
 const userSchema = new Schema({
     userName: String,
     addresses: [
