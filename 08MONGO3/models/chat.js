@@ -5,19 +5,19 @@ const chatSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    to: {
+    to:{
         type: String,
-        required: true,
+        required: true
     },
-    msg: {
+    msg:{
         type: String,
-        maxLength: 50,
+        maxLength: 50
     },
     created_at:{
         type: Date,
         required: true
     }
-});
+})
 
 const Chat = mongoose.model("Chat", chatSchema);
 
