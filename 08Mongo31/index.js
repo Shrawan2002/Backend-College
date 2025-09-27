@@ -47,6 +47,20 @@ app.get("/", (req,res)=>{
    res.render("edit.ejs", {chat});
  })
 
+ // update route
+
+ app.put("/chats/:id", async(req,res)=>{
+   try{
+      let id = req.params.id;
+      let {updated_at} = req.body;
+      let updatedAtDate = updated_at ? new Date(updated_at) : new Date();
+      let updatedChat = await Chat.findByIdAndUpdate(id,{...req.body, updated_at: updatedAtDate}, {runValidators: true,new: true});
+      console.log(updatedChat);
+      res.redirect("/chats");
+   }catch(err){
+      console.log(err);
+   }  
+ })
 
 app.listen(8080, ()=>{
     console.log("app listening on port 8080");

@@ -7,9 +7,13 @@
 </head>
 <body>
     <h3>Edit your chat: <%= chat._id %></h3>
-    <p>This chat was sent from <%= chat.from %> to <%= chat.to %></p>
+    <p>This chat was sent from <b> <%= chat.from %> </b> to <b><%= chat.to %> </b></p>
     <form method="POST" action="/chats/<%= chat._id %>?_method=PUT ">
-        <textarea role="5" name="msg"><%= chat.msg %></textarea>
+        <textarea rows="7" cols="30" name="msg"><%= chat.msg %></textarea>
+        <br />
+        <input type="date" name="updated_at" />
+        <br/>
+        <button style="padding: 8px; width: 100px; margin-top: 10px; background-color: #1e90ff;">Edit</button>
     </form>
 </body>
 </html>
