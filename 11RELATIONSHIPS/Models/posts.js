@@ -53,10 +53,10 @@ const addData = async ()=>{
 
 
     // Create post 2
-     let post2 = new Post({
-        content: "Bye Bye !",
-        like: 23
-    })
+    //  let post2 = new Post({
+    //     content: "Bye Bye !",
+    //     like: 23
+    // })
 
     let user = await User.findOne({username: "rahulkumar"});
 

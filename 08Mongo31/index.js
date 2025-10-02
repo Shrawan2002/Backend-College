@@ -49,7 +49,7 @@ app.get("/", (req,res)=>{
 
  // update route
 
- app.put("/chats/:id", async(req,res)=>{
+ app.put("/chats/:id", async(req,res)=>{  
    try{
       let id = req.params.id;
       let {updated_at} = req.body;

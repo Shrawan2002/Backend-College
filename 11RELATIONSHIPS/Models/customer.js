@@ -49,7 +49,7 @@ const customerSchema = new Schema({
 customerSchema.post("findOneAndDelete", async(customer)=>{
     if(customer.orders.length){
         let res = await Order.deleteMany({_id: {$in : customer.orders} });
-        console.log(res);
+        // console.log(res);
     }
 })
 
@@ -70,7 +70,7 @@ const addCustomer = async()=>{
     // console.log(res);
 
     let result = await Customer.find({});
-    console.log(result);
+    console.log(result[0]); 
 
 }
 
